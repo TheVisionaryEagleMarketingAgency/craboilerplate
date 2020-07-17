@@ -1,0 +1,16 @@
+.header {
+  background: navy;
+  border-bottom: 1px solid navajowhite;
+}
+
+.headeropt {
+  display: flex;
+}
+
+.logo {
+  padding-top: 8px;
+}
+
+.logo img {
+  width: 35px;
+}
