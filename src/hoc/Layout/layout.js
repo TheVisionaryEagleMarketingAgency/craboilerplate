@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./layout.css";
 import Header from "../../components/Header/header";
-
+import Footer from "../../components/Footer/footer";
 class Layout extends Component {
   state = {
     //initial state of the sideNav //hidden
@@ -31,6 +31,8 @@ class Layout extends Component {
           onOpenNav={() => this.toggleSidenav(true)} //Call back to open the nav when clicked
         />
         {this.props.children}
+
+        <Footer />
       </div>
     );
   }
