@@ -1,6 +1,6 @@
 import React from "react";
 import SideNav from "react-simple-sidenav";
-import SideNavItems from "./sideNav";
+import SideNavItems from "./sidenavitems";
 
 //The props are passed from <SideNav {...props} /> in here
 const SideNavigation = (props) => {
