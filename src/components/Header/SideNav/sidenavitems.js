@@ -4,13 +4,61 @@ import style from "./sideNav.css";
 import { Link } from "react-router-dom";
 
 const SideNavItems = () => {
-  return (
-    <div className={style.option}>
-      <Link to="/">
-        <FontAwesome name="home">Home</FontAwesome>
-      </Link>
-    </div>
-  );
+  //   return (
+  //     <div className={style.option}>
+  //       <Link to="/">
+  //         <FontAwesome name="home">Home</FontAwesome>
+  //       </Link>
+  //     </div>
+  //   );
+
+  const items = [
+    {
+      type: style.option,
+      icon: "home",
+      text: "Home",
+      link: "/",
+    },
+    {
+      type: style.option,
+      icon: "file-text-o",
+      text: "News",
+      link: "/news",
+    },
+
+    {
+      type: style.option,
+      icon: "play",
+      text: "Videos",
+      link: "/news",
+    },
+    {
+      type: style.option,
+      icon: "sign-in",
+      text: "sign-in",
+      link: "/sign-in",
+    },
+    {
+      type: style.option,
+      icon: "sign-out",
+      text: "Sign-out",
+      link: "/sign-out",
+    },
+  ];
+
+  const showItems = () => {
+    return items.map((item, i) => {
+      return (
+        <div key={i} className={item.type}>
+          <Link to={item.link}>
+            <FontAwesome name={item.icon}>{item.text}</FontAwesome>
+          </Link>
+        </div>
+      );
+    });
+  };
+
+  return <div>{showItems()}</div>;
 };
 
 export default SideNavItems;
