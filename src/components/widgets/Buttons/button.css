@@ -1,0 +1,10 @@
+.blue_btn {
+  text-align: center;
+  background-color: blue;
+  border-bottom: 1px solid whitesmoke;
+  font-weight: 500;
+  color: crimson;
+  padding: 9px;
+  cursor: pointer;
+  font-size: 15px;
+}

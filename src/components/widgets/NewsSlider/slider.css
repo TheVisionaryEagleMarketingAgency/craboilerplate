@@ -18,11 +18,11 @@
 }
 
 .featured_caption {
-  color: brown;
   top: 0px;
-  width: 100%;
+  color: black;
   padding: 20px;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 50px;
+  background-color: teal;
+  display: inline;
   box-sizing: border-box;
 }

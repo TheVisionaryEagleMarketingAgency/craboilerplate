@@ -11,3 +11,14 @@
   margin: 5px 0;
   color: blue;
 }
+
+.newslist_wrapper {
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in;
+}
+.newslist_wrapper_enter {
+  opacity: 1;
+  transform: translateX(0%);
+}
