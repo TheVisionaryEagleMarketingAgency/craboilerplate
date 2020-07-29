@@ -32,6 +32,8 @@ class NewsLists extends Component {
       //console.log(res);
       this.setState({
         items: [...this.state.items, ...res.data],
+        start,
+        end,
       });
     });
   };

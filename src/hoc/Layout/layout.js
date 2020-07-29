@@ -6,7 +6,6 @@ class Layout extends Component {
   state = {
     //initial state of the sideNav //hidden
     //Make the header listen if the side bar is closed or open
-    //
     showNav: false,
   };
 

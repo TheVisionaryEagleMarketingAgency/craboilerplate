@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./header.css";
+import styles from "./header.css";
 import { Link } from "react-router-dom";
 import FontAwesome from "react-fontawesome";
 import SideNav from "./SideNav/sideNav";
@@ -10,14 +10,15 @@ import SideNav from "./SideNav/sideNav";
 const Header = (props) => {
   const navBars = () => {
     return (
-      <div className={style.bars}>
+      <div className={styles.bars}>
         <FontAwesome
           name="bars"
           //Catching the data from the click
           onClick={props.onOpenNav}
           style={{
+            padding: "20px",
             color: "red",
-            padding: "10px",
+            fontSize: "20px",
             cursor: "pointer",
           }}
         />
@@ -26,7 +27,7 @@ const Header = (props) => {
   };
   const logo = () => {
     return (
-      <Link to="/" className={style.logo}>
+      <Link to="/" className={styles.logo}>
         <img alt="Logo" src="/images/nba_logo.png"></img>
       </Link>
     );
@@ -34,10 +35,10 @@ const Header = (props) => {
 
   return (
     <div>
-      <header className={style.header}>
+      <header className={styles.header}>
         <SideNav {...props} />
 
-        <div className={style.headeropt}>
+        <div className={styles.headeropt}>
           {navBars()}
           {logo()}
         </div>

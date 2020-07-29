@@ -2,6 +2,11 @@
   background: navy;
   border-bottom: 1px solid navajowhite;
 }
+/* .fa.fa-bars {
+  padding: 30px;
+  cursor: pointer;
+  color: red;
+} */
 
 .headeropt {
   display: flex;
@@ -12,5 +17,5 @@
 }
 
 .logo img {
-  width: 35px;
+  margin-top: 10px;
 }
