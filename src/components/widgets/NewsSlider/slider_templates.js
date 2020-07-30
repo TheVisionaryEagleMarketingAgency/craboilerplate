@@ -48,6 +48,7 @@ const SliderTemplate = (props) => {
         );
       });
       break;
+
     //create other template
     //
     default:

@@ -16,13 +16,12 @@ class Routes extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/news" exact component={NewsMain} />
-          <Route path="/videos" exact component={VideoMain} />
 
           {/* 
           Route for internal routes.. Route which shows everything related to articles..
           Route that show the entire post when the link on the newlist page is clicked */}
           <Route path="/articles/:id" exact component={NewsArticles} />
-
+          <Route path="/videos" exact component={VideoMain} />
           <Route path="/videos/:id" exact component={VideoArticles} />
         </Switch>
       </Layout>
