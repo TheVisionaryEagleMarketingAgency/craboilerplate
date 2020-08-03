@@ -2,6 +2,7 @@ import React from "react";
 import Slick from "react-slick";
 import styles from "./slider.css";
 import { Link } from "react-router-dom";
+//import blazers from "../../../../public/images/teams"
 
 const SliderTemplate = (props) => {
   //console.log(props);
@@ -31,17 +32,18 @@ const SliderTemplate = (props) => {
       template = props.data.map((item, i) => {
         return (
           <div key={i}>
-            {console.log(item)}
+            {/* {console.log(item)} */}
             <div className={styles.featured_item}>
               <div
                 className={styles.featured_image}
                 style={{
-                  backgroundImage: `URL(../images/teams/${item.logo})`,
+                  background: `url(./images/articles/${item.image})`,
+                  //backgroundImage: `URL(./images/teams/${item.logo})`,
                 }}
               ></div>
 
               <Link to={`/teams/${item.id}`}>
-                <div className={styles.featured_caption}>{item.city}</div>
+                <div className={styles.featured_caption}>{item.title}</div>
               </Link>
             </div>
           </div>

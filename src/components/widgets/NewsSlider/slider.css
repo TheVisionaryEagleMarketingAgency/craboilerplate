@@ -19,10 +19,9 @@
 
 .featured_caption {
   top: 0px;
-  color: black;
-  padding: 20px;
-  font-size: 50px;
+  color: white;
+  padding: 2% 2%;
+  font-size: 30px;
   background-color: teal;
-  display: inline;
   box-sizing: border-box;
 }

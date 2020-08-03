@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { URL } from "../../../config";
+import { firebaseArticles, firebaseLooper } from "../../../firebase";
+//import axios from "axios";
+//import { URL } from "../../../config";
 import SliderTemplate from "./slider_templates";
 
 class NewsSlider extends Component {
@@ -14,17 +15,28 @@ class NewsSlider extends Component {
   //catch the data of articles inside the promise
 
   componentWillMount() {
-    axios
-      .get(`${URL}/teams?_start=${this.props.start}&_end=${this.props.amount}`)
-      .then((res) => {
-        //console.log(res.data);
+    //make a req firebase articles
+    firebaseArticles
+      .limitToFirst(3)
+      .once("value")
+      .then((snapshot) => {
+        const news = firebaseLooper(snapshot);
         this.setState({
-          news: res.data,
+          news,
         });
       });
+
+    // axios
+    //   .get(`${URL}/teams?_start=${this.props.start}&_end=${this.props.amount}`)
+    //   .then((res) => {
+    //     //console.log(res.data);
+    //     this.setState({
+    //       news: res.data,
+    //     });
+    //   });
   }
   render() {
-    //console.log(this.state.news);
+    console.log(this.state);
     return (
       <div>
         <SliderTemplate

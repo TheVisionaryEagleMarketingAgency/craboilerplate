@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
+//import axios from "axios";
 import styles from "./videolists.css";
-import { URL } from "../../../config";
+//import { URL } from "../../../config";
 import Button from "../Buttons/buttons";
 import VideoListTemplate from "./videos_list_template";
+
+import {
+  firebaseVideos,
+  firebaseLooper,
+  firebaseTeams,
+} from "../../../firebase";
 
 class VideoList extends Component {
   //step[1]
@@ -21,25 +27,50 @@ class VideoList extends Component {
 
   request = (start, end) => {
     if (this.state.teams.length < 1) {
-      axios.get(`${URL}/teams`).then((res) => {
+      firebaseTeams.once("value").then((snapshot) => {
+        const teams = firebaseLooper(snapshot);
         this.setState({
-          teams: res.data,
+          teams,
         });
       });
+      // axios.get(`${URL}/teams`).then((res) => {
+      //   this.setState({
+      //     teams: res.data,
+      //   });
+      // });
     }
-    axios.get(`${URL}/videos?_start=${start}&_end=${end}`).then((res) => {
-      //console.log(res);
-      this.setState({
-        videos: [...this.state.videos, ...res.data],
-        start,
-        end,
+
+    firebaseVideos
+      .orderByChild("id")
+      .startAt(start)
+      .endAt(end)
+      .once("value")
+      .then((snapshot) => {
+        const videos = firebaseLooper(snapshot);
+
+        this.setState({
+          videos: [...this.state.videos, ...videos],
+          start,
+          end,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    });
+
+    // axios.get(`${URL}/videos?_start=${start}&_end=${end}`).then((res) => {
+    //   //console.log(res);
+    //   this.setState({
+    //     videos: [...this.state.videos, ...res.data],
+    //     start,
+    //     end,
+    //   });
+    // });
   };
 
   loadMore = () => {
     let end = this.state.end + this.state.amount;
-    this.request(this.state.end, end);
+    this.request(this.state.end + 1, end);
   };
 
   renderVideos = () => {

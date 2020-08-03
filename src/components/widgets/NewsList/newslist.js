@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Link } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 import styles from "./newslist.css";
 import Button from "../Buttons/buttons";
 import CardInfo from "../../widgets/CardInfo/cardinfo";
-import { URL } from "../../../config";
+import {
+  firebaseArticles,
+  firebaseLooper,
+  firebaseTeams,
+} from "../../../firebase";
+//import { URL } from "../../../config";
 
 class NewsLists extends Component {
   state = {
@@ -22,25 +27,53 @@ class NewsLists extends Component {
 
   request = (start, end) => {
     if (this.state.teams.length < 1) {
-      axios.get(`${URL}/teams`).then((res) => {
+      //fetch all teams
+
+      firebaseTeams.once("value").then((snapshot) => {
+        const teams = firebaseLooper(snapshot);
         this.setState({
-          teams: res.data,
+          teams,
         });
       });
+
+      // axios.get(`${URL}/teams`).then((res) => {
+      //   this.setState({
+      //     teams: res.data,
+      //   });
+      // });
     }
-    axios.get(`${URL}/articles?_start=${start}&_end=${end}`).then((res) => {
-      //console.log(res);
-      this.setState({
-        items: [...this.state.items, ...res.data],
-        start,
-        end,
+
+    firebaseArticles
+      .orderByChild("id")
+      .startAt(start)
+      .endAt(end)
+      .once("value")
+      .then((snapshot) => {
+        const articles = firebaseLooper(snapshot);
+
+        this.setState({
+          items: [...this.state.items, ...articles],
+          start,
+          end,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    });
+
+    // axios.get(`${URL}/articles?_start=${start}&_end=${end}`).then((res) => {
+    //   //console.log(res);
+    //   this.setState({
+    //     items: [...this.state.items, ...res.data],
+    //     start,
+    //     end,
+    //   });
+    // });
   };
 
   loadMore = () => {
     let end = this.state.end + this.state.amount;
-    this.request(this.state.end, end);
+    this.request(this.state.end + 1, end);
   };
 
   renderNews = (type) => {
