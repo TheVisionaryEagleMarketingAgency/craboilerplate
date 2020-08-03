@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "../../Articles/articles.css";
 import { URL } from "../../../config";
 import Header from "../Videos/header";
-import VideosRelated from "../../../components/widgets/VideosList/VideosRelated/videosRelated";
+import VideosRelated from "../../widgets/VideosList/VideosRelated/videosRelated";
 
 class VideoArticles extends Component {
   state = {
@@ -15,12 +15,12 @@ class VideoArticles extends Component {
 
   componentWillMount() {
     axios.get(`${URL}/videos?id=${this.props.match.params.id}`).then((res) => {
-      //console.log(res);
+      //console.log(res.data);
 
       let article = res.data[0];
 
       axios.get(`${URL}/teams?id=${article.team}`).then((response) => {
-        //console.log(res);
+        console.log(response.data);
 
         this.setState({
           article: article,
@@ -34,26 +34,31 @@ class VideoArticles extends Component {
 
   getRelated = () => {
     axios.get(`${URL}/teams`).then((response) => {
-      //console.log(res);
+      //console.log(response.data);
 
       let teams = response.data;
-
+      //console.log(this.state);
       axios
         .get(`${URL}/videos?q=${this.state.team[0].city}&_limit=3`)
-        .then((response) => {
-          //console.log(res);
+        .then((res) => {
+          //console.log(res.data);
 
           this.setState({
             teams: teams,
-            related: response.data,
+            related: res.data,
           });
         });
     });
   };
 
   render() {
+    //console.log(this.state.teams[0]);
+    //console.log(this.state.related);
+    // console.log(this.state.teams);
     const article = this.state.article;
     const team = this.state.team;
+
+    console.log(team[0]);
     return (
       <div>
         <Header teamData={team[0]} />
@@ -69,7 +74,10 @@ class VideoArticles extends Component {
           ></iframe>
         </div>
 
-        <VideosRelated data={this.state.related} teams={this.state.teams} />
+        <VideosRelated
+          relatedteamData={this.state.related}
+          teams={this.state.teams}
+        />
       </div>
     );
   }

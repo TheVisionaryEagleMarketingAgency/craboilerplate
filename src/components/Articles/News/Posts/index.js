@@ -14,12 +14,12 @@ class NewsArticles extends Component {
     axios
       .get(`${URL}/articles?id=${this.props.match.params.id}`)
       .then((res) => {
-        //console.log(res);
+        console.log(res.data);
 
         let article = res.data[0];
 
         axios.get(`${URL}/teams?id=${article.team}`).then((response) => {
-          //console.log(res);
+          console.log(response.data);
 
           this.setState({
             article: article,
@@ -36,7 +36,7 @@ class NewsArticles extends Component {
     return (
       <div className={styles.articleWrapper}>
         <Header
-          teamData={team[0]}
+          teamData={team[0]} // passing the team state above this is aaray of objects
           author={article.author}
           date={article.date}
         />

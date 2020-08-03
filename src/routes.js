@@ -7,7 +7,7 @@ import NewsArticles from "../src/components/Articles/News/Posts/index";
 import VideoArticles from "../src/components/Articles/Videos/index";
 
 import NewsMain from "../src/components/Articles/News/Main/index";
-import VideoMain from "../src/components/Articles/Videos/Main/index";
+import VideosMain from "../src/components/Articles/Videos/Main/index";
 
 class Routes extends Component {
   render() {
@@ -21,8 +21,8 @@ class Routes extends Component {
           Route for internal routes.. Route which shows everything related to articles..
           Route that show the entire post when the link on the newlist page is clicked */}
           <Route path="/articles/:id" exact component={NewsArticles} />
-          <Route path="/videos" exact component={VideoMain} />
           <Route path="/videos/:id" exact component={VideoArticles} />
+          <Route path="/videos" exact component={VideosMain} />
         </Switch>
       </Layout>
     );

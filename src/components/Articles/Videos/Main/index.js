@@ -1,21 +1,19 @@
 import React from "react";
 
-//import VideoList from "../../../widgets/VideosList/videoslists";
+import VideoList from "../../../widgets/VideosList/videoslists";
 
-const VideoMain = () => {
+const VideosMain = () => {
   return (
     <div>
-      videos
-      {/* {" "}
       <VideoList
         type="card"
         title={true}
         loadmore={true}
         start={1}
-        amount={4}
-      /> */}
+        amount={10}
+      />
     </div>
   );
 };
 
-export default VideoMain;
+export default VideosMain;

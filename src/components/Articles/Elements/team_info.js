@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../Articles/articles.css";
 
 const TeamInfo = (props) => {
+  //console.log(props);
   return (
     <div className={styles.teamHeader}>
       <div

@@ -475,6 +475,7 @@
     {
       "id": 8,
       "name": "Nuggets",
+      "city": "Boston",
       "logo": "nuggets.png",
       "poll": "false",
       "count": 0,

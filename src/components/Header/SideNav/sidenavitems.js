@@ -30,7 +30,7 @@ const SideNavItems = () => {
       type: style.option,
       icon: "play",
       text: "Videos",
-      link: "/news",
+      link: "/videos",
     },
     {
       type: style.option,
